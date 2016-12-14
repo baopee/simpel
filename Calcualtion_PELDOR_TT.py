@@ -124,24 +124,10 @@ def calculate_time_trace(frequencies,time,moddepth,trapezoidal,superadap,Jarasbu
                 for t in range(0,len(time)):                 
                     
                     """Adaptive integration"""
-                    """function = lambda phi: (coef[number_of_freq]*(math.cos((3*(math.cos(phi)**2)-1)*frtmp*
+                    function = lambda phi: (coef[number_of_freq]*(math.cos((3*(math.cos(phi)**2)-1)*frtmp*
                     (time[t]/1000.0))*math.sin(phi)))
-                    tmp_var = integrate.quad(function,0,math.pi/2, epsabs=1.0e-05)  """ 
-                    a = frtmp*(abs(time[t]/1000.0))
-                    tmp = np.zeros(2)
-                    if time[t] != 0:
-                        b1 = math.sqrt((6/math.pi))*math.sqrt(a)
-                        b2 =  math.sqrt(math.pi/6)/(math.sqrt(a))
-                        tmp =   fresnel(b1)
-                        Integration[number_of_freq][t] =(math.cos(a)*tmp[1]+math.sin(a)*tmp[0])*b2*coef[number_of_freq]
-                    else:
-                        Integration[number_of_freq][t] = 1.0*coef[number_of_freq]
-
-                    #def function(phi):                    
-                     #   return (coef[number_of_freq]*(math.cos((3*(math.cos(phi)**2)-1)*frtmp*
-                     #   (time[t]/1000.0))*math.sin(phi)))
-                    #tmp_var = integrate.quad(function,0,b, epsabs=1.0e-05) 
-                    #Integration[number_of_freq][t] = coef[number_of_freq]*math.cos(a)*tmp_var[0]         
+                    tmp_var = integrate.quad(function,0,math.pi/2, epsabs=1.0e-05)  
+                    Integration[number_of_freq,t] = tmp_var[0]
 
                 """Summation over five distances"""
                 spectrum =(spectrum+Gaussian[number_of_freq]*
@@ -161,7 +147,6 @@ def calculate_time_trace(frequencies,time,moddepth,trapezoidal,superadap,Jarasbu
                  up_lim = freq[number_of_freq]+3*sigma
                  down_lim = freq[number_of_freq]-3*sigma
                  options={'epsabs':5.0e-04,'limit':20}
-                 #@jit
                  def function(phi, frtmp):
                      return (coef[number_of_freq]*(math.exp(-0.5*np.power((frtmp_0-frtmp),2)/(sigma*sigma))*
                      (math.cos((3*(math.cos(phi)**2)-1)*(327.0/(np.power(frtmp,3)))*
@@ -169,7 +154,44 @@ def calculate_time_trace(frequencies,time,moddepth,trapezoidal,superadap,Jarasbu
                  tmp_var = integrate.nquad(function,[[0, (math.pi/2)],[down_lim, up_lim]],opts = [options,options])
                  spectrum[t]  = spectrum[t]+tmp_var[0]  
                      
-         spectrum = moddepth*spectrum/max(spectrum)        
+         spectrum = moddepth*spectrum/max(spectrum)   
+         
+    elif trapezoidal == 3:
+        print('\nIntegration method:')
+        print('\nFresnel Type integration\n')           
+        """Loop about the discretized Gaussians"""           
+        for number_of_freq in range(0,5):
+            Jarasbutton.setValue(int((number_of_freq+1)*(20)))
+            if coef[number_of_freq] != 0:
+                for gstep in range(0,gaussiansteps ):
+                    x = (freq[number_of_freq]+3.0*sigma-
+                    (3.0*sigma*(gstep-1.0))/((gaussiansteps-1.0)/2.0))
+    
+                    Gaussian[number_of_freq] = (1.0/(math.sqrt(2.0*math.pi*sigma))*
+                    math.exp(-0.5*(np.power((freq[number_of_freq]-x),2)/(sigma*sigma))))           
+                
+                    """Transformation to frequency space"""
+                    frtmp = (327.0/(np.power(x,3)))               
+                
+                    Frequencies_to_Gaussian[number_of_freq] = frtmp
+                    for t in range(0,len(time)):                 
+                    
+                        a = frtmp*(abs(time[t]/1000.0))
+                        tmp = np.zeros(2)
+                        if time[t] != 0:
+                            b1 = math.sqrt((6/math.pi))*math.sqrt(a)
+                            b2 =  math.sqrt(math.pi/6)/(math.sqrt(a))
+                            tmp =   fresnel(b1)
+                            Integration[number_of_freq][t] =(math.cos(a)*tmp[1]+math.sin(a)*tmp[0])*b2*coef[number_of_freq]
+                        else:
+                            Integration[number_of_freq][t] = 1.0*coef[number_of_freq]
+
+                    """Summation over five distances"""
+                    spectrum =(spectrum+Gaussian[number_of_freq]*
+                    Integration[number_of_freq,:]*moddepth)
+                    
+
+    spectrum = (spectrum*moddepth)/max(spectrum)
                  
     """"Fourier Analysis"""
     #Fourier = np.zeros(10000)

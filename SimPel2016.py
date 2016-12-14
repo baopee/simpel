@@ -134,10 +134,10 @@ class SimPelDesign(QtGui.QMainWindow, SimPel.Ui_SimPel2016):
         self.bg_function = np.zeros(1)
         self.detach = 0
         """Define other simulation settings"""
-        # Integrator 1 trapezoidal, 0 adaptive
-        self.integrator = 1
+        # Integrator 1 trapezoidal, 0 adaptive, 2 fully, 3 fresnel 
+        self.integrator = 3
         self.superadap = False
-        self.superadap
+
         
         
         """***********EVENTS,BUTTONS,FIELDS***********"""
@@ -193,7 +193,7 @@ class SimPelDesign(QtGui.QMainWindow, SimPel.Ui_SimPel2016):
         self.Checkbox_superadaptive.stateChanged.connect(lambda:self.use_superadaptive_Gaussian(self.Checkbox_superadaptive))
         self.ButtonFullyAdaptive.toggled.connect(lambda:self.btn5state(self.ButtonFullyAdaptive))
         self.ButtonAdaptive.toggled.connect(lambda:self.btn6state(self.ButtonAdaptive))
-        
+        self.fresnelbutton.toggled.connect(lambda:self.btn7state(self.fresnelbutton))
         """Save file"""
         self.Savebutton.clicked.connect(self.save_file)
         """Close GUI""" 
@@ -345,7 +345,9 @@ class SimPelDesign(QtGui.QMainWindow, SimPel.Ui_SimPel2016):
         self.time_bg = self.time[n::]
         self.bg_function = self.bg_function[n::]
 
-        """Make plot of TT (Time trace), DD(Distance distribution)"""                          
+        """Make plot of TT (Time trace), DD(Distance distribution)"""   
+        if self.save_on == False:
+            return                       
         self.plot_TT()    
         return
 
@@ -355,6 +357,9 @@ class SimPelDesign(QtGui.QMainWindow, SimPel.Ui_SimPel2016):
             self.spc_n,self.noisefunction= add_noise(self.spectrum,self.noislevel)
         else:
             self.spc_n = self.spectrum
+        if self.save_on == False:
+            return
+            
         self.make_background()        
         return
         
@@ -478,6 +483,8 @@ class SimPelDesign(QtGui.QMainWindow, SimPel.Ui_SimPel2016):
             self.showbg = 1
         else:
             self.showbg = 0
+        if self.save_on == False:
+            return
         self.plot_TT()   
         return    
 
@@ -487,6 +494,8 @@ class SimPelDesign(QtGui.QMainWindow, SimPel.Ui_SimPel2016):
             self.noise_on = 1
         else:
             self.noise_on = 0
+        if self.save_on == False:
+            return
         self.make_noise()
         return 
 
@@ -515,7 +524,7 @@ class SimPelDesign(QtGui.QMainWindow, SimPel.Ui_SimPel2016):
         if integr.isChecked() == True:
             self.integrator = 1
         else:
-            self.integrator = 0
+            self.integrator = 3
             
         return 
 
@@ -526,15 +535,22 @@ class SimPelDesign(QtGui.QMainWindow, SimPel.Ui_SimPel2016):
                 self.superadap = False
                 self.Checkbox_superadaptive.setCheckState(False)
         else:
-            self.integrator = 1            
+            self.integrator = 3            
         return 
         
     def btn6state(self,integr):
         if integr.isChecked() == True:
             self.integrator = 0
         else:
-            self.integrator = 1            
+            self.integrator = 3            
         return         
+
+    def btn7state(self,integr):
+        if integr.isChecked() == True:
+            self.integrator = 3
+        else:
+            self.integrator = 3            
+        return   
 
     def use_superadaptive_Gaussian(self,adaptiveon):     
         if (adaptiveon.isChecked() == True and not self.integrator == 2):
@@ -547,8 +563,8 @@ class SimPelDesign(QtGui.QMainWindow, SimPel.Ui_SimPel2016):
 
     """SAVE OUTPUT""" 
     def save_file(self):
-        #if self.save_on == False:
-         #   return
+        if self.save_on == False:
+            return
         saveFile = QtGui.QAction("&Save File", self)
         saveFile.setShortcut("Ctrl+S")
         saveFile.setStatusTip('Save File')

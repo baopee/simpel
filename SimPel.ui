@@ -673,7 +673,7 @@
     <widget class="QLabel" name="labeldistances_29">
      <property name="geometry">
       <rect>
-       <x>25</x>
+       <x>30</x>
        <y>15</y>
        <width>141</width>
        <height>16</height>
@@ -1665,7 +1665,7 @@
      <property name="geometry">
       <rect>
        <x>9</x>
-       <y>60</y>
+       <y>90</y>
        <width>181</width>
        <height>22</height>
       </rect>
@@ -1676,17 +1676,17 @@
       </font>
      </property>
      <property name="text">
-      <string>Trapezoidal Integration</string>
+      <string>Trapezoidal integration</string>
      </property>
      <property name="checked">
-      <bool>true</bool>
+      <bool>false</bool>
      </property>
     </widget>
     <widget class="QRadioButton" name="ButtonAdaptive">
      <property name="geometry">
       <rect>
        <x>9</x>
-       <y>80</y>
+       <y>110</y>
        <width>181</width>
        <height>22</height>
       </rect>
@@ -1697,14 +1697,14 @@
       </font>
      </property>
      <property name="text">
-      <string>Adaptive Integration</string>
+      <string>Adaptive integration</string>
      </property>
     </widget>
     <widget class="QLabel" name="label">
      <property name="geometry">
       <rect>
        <x>16</x>
-       <y>41</y>
+       <y>50</y>
        <width>201</width>
        <height>17</height>
       </rect>
@@ -1724,7 +1724,7 @@
      <property name="geometry">
       <rect>
        <x>9</x>
-       <y>100</y>
+       <y>140</y>
        <width>211</width>
        <height>22</height>
       </rect>
@@ -1742,7 +1742,7 @@
      <property name="geometry">
       <rect>
        <x>9</x>
-       <y>145</y>
+       <y>200</y>
        <width>181</width>
        <height>22</height>
       </rect>
@@ -1760,7 +1760,7 @@
      <property name="geometry">
       <rect>
        <x>17</x>
-       <y>127</y>
+       <y>180</y>
        <width>181</width>
        <height>17</height>
       </rect>
@@ -1774,6 +1774,27 @@
      </property>
      <property name="text">
       <string>High accuracy Integration </string>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="fresnelbutton">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>70</y>
+       <width>191</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>9</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>Fresnel type integration</string>
+     </property>
+     <property name="checked">
+      <bool>true</bool>
      </property>
     </widget>
    </widget>
