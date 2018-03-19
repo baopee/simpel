@@ -98,13 +98,13 @@
 } {}% ...\end{algorithm}
 \def\algorithmautorefname{Algorithm}% Autoref caption
 
-\newcommand{\simpel}{\textsf{SimPel} }
+\newcommand{\simpel}{\textsf{SimPel}}
 \newcommand{\figspace}{\hspace{0.5cm}}
 
 \begin{document}
 \thispagestyle{empty}
 \begin{center}
-\textbf{\Large \simpel: User Manual}\\[1.5cm]
+\textbf{\Large \simpel{} : User Manual}\\[1.5cm]
 {\large Version 1.0.0} \\[1.5cm]
 \includegraphics[scale=0.65]{SimPel_Logo.pdf}\\[2cm]
 by \\[0.5cm]
@@ -115,27 +115,27 @@ by \\[0.5cm]
 
 
 \section{Description, License, Requirements}
-\simpel is a Python3-based simulation program for high-performance simulations of PELDOR/DEER traces. \simpel provides a user-friendly GUI based on the PyQt5 GUI framework.
+\simpel{} is a Python3-based simulation program for high-performance simulations of PELDOR/DEER traces. \simpel{} provides a user-friendly GUI based on the PyQt5 GUI framework.
 Up to five Gaussian distributions with independent
 linear coefficients and standard deviations can be used for creating a distance distribution. The user-defined distance distribution
 is used to calculate the PELDOR/DEER trace. Many simulation options are available. In addition to the pure dipolar evolution signal of the PELDOR/DEER trace, a background function
 can be added as well as Gaussian (white) noise. Simulations can be saved and automatic figure export is supported (formats: png, tif, pdf, ....).
 Configuration settings for simulation and plotting options can be adjusted, allowing the user, e.g. to create figures with own preferences.
-\simpel can be used to systematically explore the impact of changes of the distance distribution on the PELDOR/DEER trace.
-Additionally \simpel can be used to compare experimental time traces with simulations.
+\simpel{} can be used to systematically explore the impact of changes of the distance distribution on the PELDOR/DEER trace.
+Additionally \simpel{} can be used to compare experimental time traces with simulations.
 The Bruker BES3T file format (.DTA, .DSC) used by Xepr and Elexsys spectrometers
-is supported as well as text files for loading experimental data. Furthermore, \simpel can be used to create high quality figures for 
+is supported as well as text files for loading experimental data. Furthermore, \simpel{} can be used to create high quality figures for 
 simulated time traces and distance distributions.
 For PELDOR/DEER analysis, we recommend the program GloPel, which is also freely available and can be downloaded at {\url{www.glopel.de}}.
 
 \subsection{License}
-\simpel is made available free of charge and open source. 
-\simpel is distributed under a 2-clause license (“Simplified BSD License” or “FreeBSD License”).
+\simpel{} is made available free of charge and open source. 
+\simpel{} is distributed under a 2-clause license (“Simplified BSD License” or “FreeBSD License”).
 
 \subsection{Requirements}
-\simpel is available free of charge and open source (see license). We recommend everybody with a recent Python installation on their computers to download the source code and use it. 
+\simpel{} is available free of charge and open source (see license). We recommend everybody with a recent Python installation on their computers to download the source code and use it. 
 However, 
-\simpel can be downloaded as executable binary for Windows, macOS and several Linux flavors.
+\simpel{} can be downloaded as executable binary for Windows, macOS and several Linux flavors.
 It was tested on various systems including Windows 7 (32-bit and 64-bit architecture), Windows 10 (32-bit and 64-bit architecture), macOS 10.12.6 (Sierra),
 and Ubuntu 16.04.\\
 
@@ -166,12 +166,12 @@ the program. The main GUI window as well as all additional windows are resizable
 \begin{figure}[h!]
 \begin{center}
 \includegraphics[scale=0.5]{Main_Window_example.png}
-\caption{Main GUI window of \simpel running on a Linux system (Ubuntu 16.04). Simulation of a bimodal distance distribution is shown. A background
+\caption{Main GUI window of \simpel{} running on a Linux system (Ubuntu 16.04). Simulation of a bimodal distance distribution is shown. A background
 function (shown in red) was enabled. White noise was added to the simulated time trace.}
 \label{MainWindowfig}
 \end{center}
 \end{figure}
-Parameter such as central distances $r_{0,i}$, standard deviations $\sigma_i$, or linear coefficients $c_i$ for up to five
+Parameters such as central distances $r_{0,i}$, standard deviations $\sigma_i$, or linear coefficients $c_i$ for up to five
 Gaussian functions can be set by the user. Additional simulation options are the time scale ($t_{\mathrm{max}}$), the 
 PELDOR/DEER step-size and the modulation depth $\lambda$. The PELDOR trace is calculated according to  \autoref{PELDOR_kernel_function}.
 A background function can be added to the PELDOR/DEER trace. The background dimension 
@@ -182,7 +182,7 @@ The simulation is carried out by pressing the ``Start'' button.
 A user-defined distance can be loaded. From this distance distribution the PELDOR/DEER trace is calculated using a kernel matrix according to
 \autoref{kernel_matrix_cal}. The distance distribution has to be provided as text file.
 
-Experimental PELDOR/DEER time traces can be loaded and compared to simulations. \simpel accepts either a text-file format
+Experimental PELDOR/DEER time traces can be loaded and compared to simulations. \simpel{} accepts either a text-file format
 or a Bruker BES3T file format (.DTA, .DSC). Example for a comparison between an experimental dataset and a simulation is shown in
 \autoref{Expample_experimental_dataset}
 
@@ -190,14 +190,14 @@ or a Bruker BES3T file format (.DTA, .DSC). Example for a comparison between an 
 \centering
      \subfigure{\includegraphics{Test_5_Distance_distribution.pdf}}\figspace
      \subfigure{\includegraphics{Test_5_Time_trace.pdf}} \\[-0.3cm]
-    \caption{Comparison of a simulation (blue) and an experimental time trace (gray). \simpel can be used to get a first impression about the distance distribution of an experimental time trace. For detailed analysis, we recommend to use the program GloPel (\url{www.glopel.de}).
+    \caption{Comparison of a simulation (blue) and an experimental time trace (gray). \simpel{} can be used to get a first impression about the distance distribution of an experimental time trace. For detailed analysis, we recommend to use the program GloPel (\url{www.glopel.de}).
     }
 \label{Expample_experimental_dataset}
 \end{figure} 
 \FloatBarrier
 \newpage
 \subsection{Integration Settings}
-The standard  integration method of \simpel uses:
+The standard  integration method of \simpel{} uses:
 \begin{align*}
 k =  19+(\mathrm{round}(100\sigma_i)) + (20+(\mathrm{round}(100\sigma_i))\%2
 \end{align*}
@@ -276,9 +276,9 @@ Integration method: Fresnel integrals
 \newpage
 \FloatBarrier
 \subsection{Configuration Settings}
-Many standard settings of \simpel can be changed either dynamically directly in the GUI or as default by creating a
+Many standard settings of \simpel{} can be changed either dynamically directly in the GUI or as default by creating a
 configuration file.\\
-The current configuration can be opened and changed when running  \simpel by pressing the ``Config.'' button.
+The current configuration can be opened and changed when running  \simpel{} by pressing the ``Config.'' button.
 If new configurations are set and the ``Accept'' button (see \autoref{Config_settings})
 is clicked, the new settings are adapted immediately and a new simulation is carried out.
 \begin{figure}[!htb]
@@ -310,7 +310,7 @@ ylabel_time_trace = $Form\ \ factor$
      \subfigure{\includegraphics{Test_3_Time_trace.pdf}} \\[-0.3cm]
      \subfigure{\includegraphics{Test_4_Distance_distribution.pdf}}\figspace
      \subfigure{\includegraphics{Test_4_Time_trace.pdf}}
-    \caption{Comparison of standard configurations of \simpel (top, blue) and user-defined default configurations as set in \autoref{user_config_list}. Many settings were changed compared to the standard configuration (the fontsize was increased, the distance range and color were changed, ....).}
+    \caption{Comparison of standard configurations of \simpel{} (top, blue) and user-defined default configurations as set in \autoref{user_config_list}. Many settings were changed compared to the standard configuration (the fontsize was increased, the distance range and color were changed, ....).}
 \label{Different_config_figures}
 \end{figure} 
 
@@ -323,7 +323,7 @@ or other things are changed, e.g. noise is added, the figures are updated automa
 \begin{figure}[h!]
 \begin{center}
 \includegraphics[scale=0.5]{Detach_figures.png}
-\caption{Main GUI window of \simpel running on a Linux system (Ubuntu 16.04). Detached figures can be modified separately and saved afterwards.}
+\caption{Main GUI window of \simpel{} running on a Linux system (Ubuntu 16.04). Detached figures can be modified separately and saved afterwards.}
 \label{Detach_figure}
 \end{center}
 \end{figure}
@@ -332,7 +332,7 @@ or other things are changed, e.g. noise is added, the figures are updated automa
 \newpage
 \section{Algorithms for the Calculation of PELDOR/DEER Traces}
 \subsection{PELDOR/DEER Trace Simulation Kernel}
-\simpel calculates a PELDOR/DEER time trace $V(t)$ using:
+\simpel{} calculates a PELDOR/DEER time trace $V(t)$ using:
 \begin{align}
 \begin{split}
 & \boldsymbol{V}=  \lambda \sum_{i=1}^5 c_i\sum_{k=1}^{j}I(r_{i,k})S(\omega_{i,k},t) \\
