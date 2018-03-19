@@ -115,17 +115,18 @@ by \\[0.5cm]
 
 
 \section{Description, License, Requirements}
-\simpel is a Python3 based simulation program for high-performance simulations of PELDOR/DEER traces. \simpel is a user-friendly GUI application based on the PyQt5 GUI framework.
+\simpel is a Python3-based simulation program for high-performance simulations of PELDOR/DEER traces. \simpel provides a user-friendly GUI based on the PyQt5 GUI framework.
 Up to five Gaussian distributions with independent
-linear coefficient and standard deviation and can be used for creating a distance distributions. The user defined distance distribution
-is used to calculate the PELDOR/DEER trace. Many simulation options are available. Additional to the pure dipolar evolution signal of the PELDOR/DEER trace a background function
-can be added as well as Gaussian (white) noise. Simulations can be saved and automatic figure export is supported (png, tif, pdf, ....).
-Configurations for simulation and plotting options can be altered, allowing the user to create figures with own preferences.
+linear coefficients and standard deviations can be used for creating a distance distribution. The user-defined distance distribution
+is used to calculate the PELDOR/DEER trace. Many simulation options are available. In addition to the pure dipolar evolution signal of the PELDOR/DEER trace, a background function
+can be added as well as Gaussian (white) noise. Simulations can be saved and automatic figure export is supported (formats: png, tif, pdf, ....).
+Configuration settings for simulation and plotting options can be adjusted, allowing the user, e.g. to create figures with own preferences.
 \simpel can be used to systematically explore the impact of changes of the distance distribution on the PELDOR/DEER trace.
-\simpel can be used to compare experimental time traces with simulations. The Bruker Elexsys file format (.DTA, .DSC)
-is supported as well as text files for loading experimental data. Furthermore it can be used to create high quality figures for 
+Additionally \simpel can be used to compare experimental time traces with simulations.
+The Bruker BES3T file format (.DTA, .DSC) used by Xepr and Elexsys spectrometers
+is supported as well as text files for loading experimental data. Furthermore, \simpel can be used to create high quality figures for 
 simulated time traces and distance distributions.
-For PELDOR/DEER analysis we recommend the program GloPel, which is also freely available and can be downloaded at {\url{www.glopel.de}}.
+For PELDOR/DEER analysis, we recommend the program GloPel, which is also freely available and can be downloaded at {\url{www.glopel.de}}.
 
 \subsection{License}
 \simpel is made available free of charge and open source. 
@@ -134,8 +135,8 @@ For PELDOR/DEER analysis we recommend the program GloPel, which is also freely a
 \subsection{Requirements}
 \simpel is available free of charge and open source (see license). We recommend everybody with a recent Python installation on their computers to download the source code and use it. 
 However, 
-\simpel can be downloaded as executable binary for Windows, macOs and several Linux flavors.
-It was tested on various systems including Windows7 (32-bit and 64-bit architecture), Windows10 (32-bit and 64-bit architecture), MacOs 10.12.6 (Sierra),
+\simpel can be downloaded as executable binary for Windows, macOS and several Linux flavors.
+It was tested on various systems including Windows 7 (32-bit and 64-bit architecture), Windows 10 (32-bit and 64-bit architecture), macOS 10.12.6 (Sierra),
 and Ubuntu 16.04.\\
 
 Please note that these versions are much harder to debug if something goes wrong, therefore, they are provided as is without any further support. 
@@ -159,9 +160,9 @@ This file is included in the sources available. To get a one-file binary, it was
 \newpage
 \section{Using \simpel}
 \FloatBarrier
-\subsection{Basic options}
-When starting \simpel the main GUI (\autoref{MainWindowfig}) opens. Default settings for all parameters are loaded when starting
-the program. The main GUI window as well as all SubGUI's are resizable and can be adjusted by the user.
+\subsection{Basic Options}
+When starting \simpel, the main GUI (\autoref{MainWindowfig}) opens. Default settings for all parameters are loaded when starting
+the program. The main GUI window as well as all additional windows are resizable and can be adjusted by the user.
 \begin{figure}[h!]
 \begin{center}
 \includegraphics[scale=0.5]{Main_Window_example.png}
@@ -170,39 +171,39 @@ function (shown in red) was enabled. White noise was added to the simulated time
 \label{MainWindowfig}
 \end{center}
 \end{figure}
-Parameter such as central distances $r_{0,i}$, standard deviations $\sigma_i$ or linear coefficients $c_i$ for up to five
+Parameter such as central distances $r_{0,i}$, standard deviations $\sigma_i$, or linear coefficients $c_i$ for up to five
 Gaussian functions can be set by the user. Additional simulation options are the time scale ($t_{\mathrm{max}}$), the 
 PELDOR/DEER step-size and the modulation depth $\lambda$. The PELDOR trace is calculated according to  \autoref{PELDOR_kernel_function}.
 A background function can be added to the PELDOR/DEER trace. The background dimension 
 can be chosen between 1 and 6 in steps of 0.1. The background decay constant can be defined by the user. The background function is calculated according to \autoref{background_function}. White noise can be added by enabling the corresponding button. The signal-to-noise
 ration can be given by the user.
-The simulation is carried out by pressing the start button. 
+The simulation is carried out by pressing the ``Start'' button. 
 
-A user defined distance can be loaded. Out of this distance distribution the PELDOR/DEER trace is calculated using a kernel matrix according to
-\autoref{kernel_matrix_cal}. The distance distribution has to be provided as .txt file.
+A user-defined distance can be loaded. From this distance distribution the PELDOR/DEER trace is calculated using a kernel matrix according to
+\autoref{kernel_matrix_cal}. The distance distribution has to be provided as text file.
 
-Experimental PELDOR/DEER time traces can be loaded and compared to simulations. \simpel expects either a text-file format
-or a Bruker Elexsys file format (.DTA, .DSC). Example for a comparison between an experimental dataset and a simulation is shown in
+Experimental PELDOR/DEER time traces can be loaded and compared to simulations. \simpel accepts either a text-file format
+or a Bruker BES3T file format (.DTA, .DSC). Example for a comparison between an experimental dataset and a simulation is shown in
 \autoref{Expample_experimental_dataset}
 
 \begin{figure}[!htb]
 \centering
      \subfigure{\includegraphics{Test_5_Distance_distribution.pdf}}\figspace
      \subfigure{\includegraphics{Test_5_Time_trace.pdf}} \\[-0.3cm]
-    \caption{Comparison of a simulation (blue) and an experimental time trace (gray). \simpel can be used to get a first impression about the distance distribution of an experimental time trace. For detailed analysis we recommend to use the program GloPel (\url{www.glopel.de}).
+    \caption{Comparison of a simulation (blue) and an experimental time trace (gray). \simpel can be used to get a first impression about the distance distribution of an experimental time trace. For detailed analysis, we recommend to use the program GloPel (\url{www.glopel.de}).
     }
 \label{Expample_experimental_dataset}
 \end{figure} 
 \FloatBarrier
 \newpage
-\subsection{Integration settings}
+\subsection{Integration Settings}
 The standard  integration method of \simpel uses:
 \begin{align*}
 k =  19+(\mathrm{round}(100\sigma_i)) + (20+(\mathrm{round}(100\sigma_i))\%2
 \end{align*}
 points for the discretization of a Gaussian function $f_i$ in the interval
-$[r_{0,i}-3\sigma_i \ ,\ r_{0,i}+3\sigma_i]$. This is sufficient for most time traces. However for some cases, especially
-if broad distance distributions are present in the small distance regions, this is not sufficient and simulation noise is observed
+$[r_{0,i}-3\sigma_i \ ,\ r_{0,i}+3\sigma_i]$. This is sufficient for most time traces. However, for some cases, especially
+if broad distance distributions are present in the small distance region, this is not sufficient and simulation noise is observed
 (\autoref{Integration_mehtods_comparison}).
 \begin{figure}[!htb]
 \centering
@@ -215,18 +216,18 @@ if broad distance distributions are present in the small distance regions, this 
     }
 \label{Integration_mehtods_comparison}
 \end{figure} 
-This simulation noise  can be avoided by enabling the higher discretization check-box (3 times higher discretization rate) or by clicking 
-Fresnel+very high discretization button (5 times higher discretization rate). These should be sufficient for simulation noise-free
+This simulation noise  can be avoided by enabling the ``Higher discretization'' check-box (three times higher discretization rate) or by checking/enabling
+``Fresnel+very high discretization'' button (five times higher discretization rate). These should be sufficient for acquiring noise-free
 simulations of all possible distance distributions.
 
 \newpage
-\subsection{Data output and figure export}
-Once a simulation was carried out the result can be saved and the figures exported. If the save button is clicked a
-file manager opens and the files can be saved at the user defined location (\autoref{Save_output_example}).
-The PELDOR/DEER trace, the distance distribution and the Fourier transform are saved as .txt files. Additionally
-a information sheet is automatically created, containing all simulation options (\autoref{Information_sheet}).
-The information sheet holds all information to reproduce the simulation if wished. Naturally, white noise cannot
-be reproduce exactly as it is created via a pseudo-random number generator.
+\subsection{Data Output and Figure Export}
+Once a simulation was carried out, the result can be saved and the figures exported. If the ``Save'' button is clicked, a
+file manager opens and the files can be saved at the  location defined by the user (\autoref{Save_output_example}).
+The PELDOR/DEER trace, the distance distribution, and the Fourier transform are saved as text files. Additionally,
+an information sheet is automatically created, containing all simulation options (\autoref{Information_sheet}).
+The information sheet contains all information to reproduce the simulation. Naturally, white noise cannot
+be reproduced exactly as it is created via a pseudo-random number generator.
 \begin{figure}[!htb]
 \centering
 \includegraphics[scale=0.5]{Save_output_example.png}
@@ -235,7 +236,7 @@ be reproduce exactly as it is created via a pseudo-random number generator.
 \label{Save_output_example}
 \end{figure} 
 If not disabled in the configurations (for configuration settings see next section) the figures are automatically
-saved as Portable Network Graphics (png) and  as vectorized Portable Document Format (PDF).
+saved as Portable Network Graphics (png) and  as vectorized Portable Document Format (PDF) files.
 
 \newpage
 \begin{lstlisting}[caption={Example for an automatically aved information sheet.},label = Information_sheet]
@@ -274,23 +275,23 @@ Integration method: Fresnel integrals
 
 \newpage
 \FloatBarrier
-\subsection{Configurations}
+\subsection{Configuration Settings}
 Many standard settings of \simpel can be changed either dynamically directly in the GUI or as default by creating a
 configuration file.\\
-The current configurations can be opened and changed when running  \simpel by pressing the Config. button.
-If new configurations are set and the accept button (see \autoref{Config_settings})
-is clicked the new settings are adapted immediately and a new simulation is carried out.
+The current configuration can be opened and changed when running  \simpel by pressing the ``Config.'' button.
+If new configurations are set and the ``Accept'' button (see \autoref{Config_settings})
+is clicked, the new settings are adapted immediately and a new simulation is carried out.
 \begin{figure}[!htb]
 \centering
 \includegraphics[scale=0.5]{Config_example.png}
     \caption{Current configurations of  \simpel. They can be easily altered and accepted.}
    \label{Config_settings}
 \end{figure}
-Alternatively, user defined configuration setting can be saved in a file called ConfigSimPel. This configuration file
-needs to be located in the folder with the executable or the source code. An example for a user defined Config\simpel is
+Alternatively, user defined configuration setting can be saved in a file called \texttt{SimPel.conf}. This configuration file
+needs to be located in the folder containing the executable or the source code. An example of a user defined \texttt{SimPel.conf} is
 shown in \autoref{user_config_list} and the corresponding changes on the figures are demonstrated in \autoref{Different_config_figures}.
 \newpage
-\begin{lstlisting}[caption={Example for a user defined configuration file (ConfigSimPel).},label = user_config_list]
+\begin{lstlisting}[caption={Example for a user defined configuration file (\texttt{SimPel.conf}).},label = user_config_list]
 
 #User defined default configurations 
 r_max = 10
@@ -309,15 +310,16 @@ ylabel_time_trace = $Form\ \ factor$
      \subfigure{\includegraphics{Test_3_Time_trace.pdf}} \\[-0.3cm]
      \subfigure{\includegraphics{Test_4_Distance_distribution.pdf}}\figspace
      \subfigure{\includegraphics{Test_4_Time_trace.pdf}}
-    \caption{Comparison of standard configurations of \simpel (top, blue) and user defined default configurations as set in \autoref{user_config_list}. Many settings were changed compared to the standard configuration (The fontsize was increased, the distance range was changed, the color was changed, ....).}
+    \caption{Comparison of standard configurations of \simpel (top, blue) and user-defined default configurations as set in \autoref{user_config_list}. Many settings were changed compared to the standard configuration (the fontsize was increased, the distance range and color were changed, ....).}
 \label{Different_config_figures}
 \end{figure} 
 
 
 
-\subsection{Detach figures}
-If wished the plots can be detached. This enables additional options to modify or configure the plots. If new simulations are carried out
-or other things, such as noise is added, are changed, the figures are updated automatically.
+\subsection{Detaching Figures}
+If wished, the plots can be detached. This enables additional options to modify or configure the plots.
+If new simulations are carried out
+or other things are changed, e.g. noise is added, the figures are updated automatically.
 \begin{figure}[h!]
 \begin{center}
 \includegraphics[scale=0.5]{Detach_figures.png}
@@ -328,8 +330,8 @@ or other things, such as noise is added, are changed, the figures are updated au
 \
 \\
 \newpage
-\section{Algorithms for the calculation of PELDOR/DEER traces}
-\subsection{PELDOR/DEER trace simulation kernel}
+\section{Algorithms for the Calculation of PELDOR/DEER Traces}
+\subsection{PELDOR/DEER Trace Simulation Kernel}
 \simpel calculates a PELDOR/DEER time trace $V(t)$ using:
 \begin{align}
 \begin{split}
@@ -348,15 +350,15 @@ or other things, such as noise is added, are changed, the figures are updated au
 \label{PELDOR_kernel_function}
 \end{split}
 \end{align}
-$\lambda$ is the given modulation depth, $r_{i,0}$ are the five given central distances,$\sigma_i$ are
-the given standard deviation, $c_i$ are the linear coefficients and $t$ is the time vector which runs
-from -200~ns to the user defined $t_{\mathrm{max}}$ with a user defined step-size. The linear coefficients are
-renormalized to their sum being equal one. It is therefore not necessary to pay attention to the normalization of the linear coefficients.
+$\lambda$ is the given modulation depth, $r_{i,0}$ are the five given central distances, $\sigma_i$ are
+the given standard deviation, $c_i$ are the linear coefficients and $t$ is the time vector running
+from -200~ns to the user-defined value of $t_{\mathrm{max}}$ with a user-defined step size. The linear coefficients are
+renormalized to their sum being equal to one. It is therefore not necessary to pay attention to the normalization of the linear coefficients.
 The normalization factor for a Gaussian function
-$\left(\dfrac{1}{\sigma_i \sqrt{2\pi}}\right)$ is not used. Instead the Gaussian functions are normalized to their sum. This is more exact as 
-different standard deviations causes different discretization rates for different standard deviations. The PELDOR kernel integral is
-not evaluated directly to avoid numerical integration. Instead the integral is reformulated as a sum of Fresnel integrals (FresnelC and FresnelS, see \autoref{Fresnel_int}). The Fresnel integrals can be evaluated in vectorized form by passing a multidimensional array to the SciPy function
-fresnel (scipy.special.fresnel). Indeed the full PELDOR/DEER trace calculation shown in \autoref{PELDOR_kernel_function}
+$\left(\dfrac{1}{\sigma_i \sqrt{2\pi}}\right)$ is not used. Instead the Gaussian functions are normalized to their sum. This is more exact, as 
+different standard deviations cause different discretization rates for different standard deviations. The PELDOR kernel integral is
+not evaluated directly to avoid numerical integration. Instead, the integral is reformulated as a sum of Fresnel integrals (FresnelC and FresnelS, see \autoref{Fresnel_int}). The Fresnel integrals can be evaluated in vectorized form by passing a multidimensional array to the SciPy function
+\texttt{fresnel} (scipy.special.fresnel). Indeed, the full PELDOR/DEER trace calculation shown in \autoref{PELDOR_kernel_function}
 is carried out without a loop but by passing a 3-dimensional array ($i,k,t$) to the Fresnel function.
 \begin{eqnarray}
 \begin{split}
@@ -376,13 +378,13 @@ S(\omega_{\text{D}},t) & = \int\limits_{0}^{\pi/2}\mathrm{cos}\Big((1-3\,\mathrm
 \end{split}
 \label{Fresnel_int}
 \end{eqnarray}
-\subsection{PELDOR/DEER trace kernel matrix}
-If a user defined distance distribution $\boldsymbol{P} = r_{i}$ is loaded and the PELDOR/DEER trace has to be calculated a 
-matrix kernel $\bold{K}$ is used:
+\subsection{PELDOR/DEER Trace Kernel Matrix}
+If a user-defined distance distribution $\boldsymbol{P} = r_{i}$ is loaded and the PELDOR/DEER trace has to be calculated, a 
+matrix kernel $\boldsymbol{K}$ is used:
 \begin{align}
 \begin{split}
-&V(t) = \bold{K}\boldsymbol{P},\\
-&\mbox{with}\hspace{0.5cm} \bold{K} = K_{ji} =
+&V(t) = \boldsymbol{K}\boldsymbol{P},\\
+&\mbox{with}\hspace{0.5cm} \boldsymbol{K} = K_{ji} =
 \frac{\cos{\big(\omega_{i}|t_j| \big)}}{z_{i}} \cdot \text{FresnelC}(z_{i})  + 
    \frac{\sin{\big(\omega_{i} |t_j|\big)}}{z_{i}} \cdot \text{FresnelS}(z_{i}),\\
   &\mbox{with}\hspace{0.5cm}  z_{i} = \sqrt{\frac{6\,\omega_{i} |t_j| }{\pi}},\\
@@ -390,34 +392,34 @@ matrix kernel $\bold{K}$ is used:
 \label{kernel_matrix_cal}
 \end{split}
 \end{align}
-The calculation of the kernel matrix $\bold{K}$ is carried our by passing a 2-dimensional array to the Fresnel function of Scipy. This allows a highly efficient calculation of the kernel matrix.
-\subsection{Adding a background function}
-A background function can be ``added'' to the PELDOR kernel function result in the new function $V_{b}(t)$: 
+The calculation of the kernel matrix $\boldsymbol{K}$ is carried our by passing a 2-dimensional array to the Fresnel function of SciPy. This allows a highly efficient calculation of the kernel matrix.
+\subsection{Adding a Background Function}
+A background function can be ``added'' to the PELDOR kernel function, resulting in the new function $V_{b}(t)$: 
 \begin{align}
 \begin{split}
 &V_{b}(t) = (V(t)+1-\lambda)B(t), \\
-&\mbox{with}\hspace{0.5cm}B(t) = \mathrm{exp}\left[-k|t^{\frac{d}{3}}|\lambda \right]
+&\mbox{with}\hspace{0.5cm}B(t) = \mathrm{exp}\left[-k|t^{d/3}|\lambda \right]
 \label{background_function}
 \end{split}
 \end{align}
-$k$ is the user defined background decay constant and $d$ is the user defined background dimension. The 
+$k$ is the user-defined background decay constant and $d$ is the user-defined background dimension. The 
 function $V_{b}(t)$ is subsequently normalized to its maximum.
 The simulation function without background decay is kept as variable. It is therefore not necessary to rerun a simulation in 
 case the background settings are changed.
-\subsection{Adding white noise}
-The used noise is statistical (uncorrelated) noise, having a probability density function (PDF) equal to that of a normalized Gaussian function.
-It can be described as additive white Gaussian noise (AWGN). The noise is added using to get a noisy time trace $V_n(t)$:
+\subsection{Adding White Noise}
+The noise used is statistical (uncorrelated) noise, having a probability density function (PDF) equal to that of a normalized Gaussian function.
+It can be described as additive white Gaussian noise (AWGN). The noise is added to get a noisy time trace $V_n(t)$:
 \begin{align}
 \begin{split}
  & V_n(t) = V(t)+n,\\
- &\mbox{with}\hspace{0.5cm} n = \dfrac{\lambda}{\text{SNR}}p_n(x), \\
+ &\mbox{with}\hspace{0.5cm} n = \dfrac{\lambda}{\text{SNR}} \; p_n(x), \\
  &\mbox{with}\hspace{0.5cm} p_n(x) = \left(\dfrac{1}{\sigma_n \sqrt{2\pi}}\right)
  \mathrm{exp}\left[-\frac{1}{2}\left(\frac{x}{\sigma_n}\right)^2\right]
  \end{split}
 \end{align}
 This implies a mean value of $0$. SNR is the given signal-to-noise ratio and $\sigma_n$ is set to one.
-The noise-free simulation is kept as variable. Therefore it is not necessary to rerun a simulation when removing the noise again or
-changing the signal to noise level.
+The noise-free simulation is kept as variable. Therefore, it is not necessary to rerun a simulation when removing the noise again or
+changing the signal-to-noise level.
 \newpage
 \section{Acknowledgments}
 Dr. Till Biskup,
@@ -425,7 +427,7 @@ Prof. Dr. Stefan Weber,
 Dr. Sylwia Kacprzak
 
 \newpage
-\section{Full configuration file (ConfigSimPel)}
+\section{Full configuration file (\texttt{SimPel.conf})}
 \begin{lstlisting}[caption={Complete configuration file of the default settings of SimPel},label = full_config_list]
 
 # Simulation Settings
@@ -447,7 +449,6 @@ colorBG = red
 ColorUser = grey
 linewidth = 1.5
 showuserTT = True
-yticks_time_trace = True
 yticks_time_trace = True
 yticks_dd = False
 title_time_trace = True
