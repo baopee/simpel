@@ -9,3 +9,4 @@ __pycache__
 
 Manual/*
 !Manual/*tex
+!Manual/fig/

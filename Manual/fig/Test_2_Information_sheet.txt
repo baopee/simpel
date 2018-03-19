@@ -1,0 +1,29 @@
+Infosheet for PELDOR/DEER Simulation. Original Path:
+/home/stephan/nas/Doktorarbeit/Programme/Python_SimPel/SimPel_Python/Manual/Test_2
+
+Simulated with SimPel2018: 1.0.0
+
+Analyzed at: 2018-03-16 11:28:56
+
+
+*************Simulation Parameter*****************
+
+Distance / nm 	 Coefficient	  sigma / nm
+1.8000	         1.0000	          0.2800	         
+2.5000	         0.6000	          0.2300	         
+2.0000	         0.0000	          0.1000	         
+2.0000	         0.0000	          0.1000	         
+2.0000	         0.0000	          0.1000	         
+
+
+PELDOR/DEER step size: 8.0 ns
+
+PELDOR/DEER time scale: 2000.0 ns
+
+PELDOR/DEER modulation depth: 0.2
+
+Gaussian noise enabled: False
+
+Background function enabled: False
+
+Integration method: Numerical trapezoidal integration
