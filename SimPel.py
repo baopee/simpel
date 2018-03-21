@@ -43,7 +43,7 @@ warnings.filterwarnings("ignore")
 #Default configurations
 configs = {"r_min":1.2,"r_max":8,"sigma_max":1.1,"sigma_min":0.0,
            "axeslabelfontsize": 9,"fontsize":10,"xmargin": 0.0,"ymargin": 0.1,
-           "xsize":4,"ysize":3,"points":881,"linewidth":1.5}
+           "xsize":4,"ysize":3,"points":881,"linewidth":1.5,"t_min":-200}
 
 configs_str = {"ylabel_time_trace":r'$Intensity$', 
            "xlabel_time_trace" : r"$time\ \mathrm{/ \ ns}$","ylabel_dd":r'$Normalised\ \ Intensity$',
@@ -51,12 +51,12 @@ configs_str = {"ylabel_time_trace":r'$Intensity$',
            "yticks_time_trace": "True", "yticks_dd": "False","title_time_trace":"True","title_dd":"True",
            "colorL": "blue","colorBG": "red","showuserTT":"True","ColorUser":"grey"}
 
-configs_lim_min = {"r_min":0.5,"sigma_min":0.0,
+configs_lim_min = {"r_min":0.5,"sigma_min":0.0,"t_min":-2000,
            "axeslabelfontsize": 2,"fontsize":2,"xmargin": -0.5,
            "ymargin": -0.5,"xsize":1,"ysize":1,"linewidth":0.5}
 
 configs_lim_max = {"r_max":16,"sigma_max":1.1,
-           "xmargin": 0.5, "ymargin": 0.8,"xsize":100,"ysize":100,"linewidth":10}
+           "xmargin": 0.5, "ymargin": 0.8,"xsize":100,"ysize":100,"linewidth":10,"t_min":0}
 
 config_filename = "SimPel.conf"
 
@@ -339,7 +339,7 @@ class SimPelDesign(QMainWindow,SimPel_Layout.Ui_SimPel2018):
         self.Pr,self.r = calculate_distance_distr(self.inputvalues,self.sigmas,self.configs)
         self.JarasprogressBar.setValue(0)
         QApplication.processEvents()
-        self.time = calculate_time(self.timescale,self.stepsize)
+        self.time = calculate_time(self.timescale,self.stepsize,self.configs["t_min"])
         self.spectrum,self.Fourier,self.Frequency_region, self.warning = calculate_time_trace(self.inputvalues,
                                         self.time,self.moddepth,self.integrator,
                                         self.superadap,self.JarasprogressBar, self.sigmas,self.userdef,self.r_usr,self.Pr_usr)                                                                       

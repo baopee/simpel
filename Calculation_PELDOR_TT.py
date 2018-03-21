@@ -151,15 +151,8 @@ def add_noise(spectrum,noiselevel):
     
   
     
-def calculate_time(timescale, stepsize):    
-    time = np.zeros(1)
-    time[0] = -192.0
-    x =-192
-    y = 1
-    while x < timescale:
-        time =  np.append(time, stepsize*y-192.0) 
-        x = x+stepsize
-        y = y+1             
+def calculate_time(timescale, stepsize,t_min):    
+    time =np.arange(t_min,timescale+stepsize,stepsize)          
     return time
     
     
