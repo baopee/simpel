@@ -179,23 +179,36 @@ For PELDOR/DEER analysis, we recommend the program GloPel, which is also freely 
 
 \subsection{Requirements}
 
-TBD
+\simpel{} was developed using Python 3, and whereas there is good chance to get it to run with Python 2.x, this has not been tested and is not guaranteed.
+
+Besides a reasonably recent Python installation, only some standard packages are required that should be either pre-installed on your system or fairly easy to install, namely:
+
+\begin{itemize}
+\item NumPy
+\item SciPy
+\item Matplotlib $\ge$ 2.0.0
+\end{itemize}
+
 
 
 \subsection{Installation Instructions}
 
-\simpel{} is available free of charge and open source (see license). We recommend everybody with a recent Python installation on their computers to download the source code and use it. However, \simpel{} can be downloaded as executable binary for Windows, macOS and several Linux flavors.It was tested on various systems including Windows 7 (32-bit and 64-bit architecture), Windows 10 (32-bit and 64-bit architecture), macOS 10.12.6 (Sierra), and Ubuntu 16.04.
+\simpel{} is available free of charge and open source (see license). We recommend everybody with a recent Python installation on their computers to download the source code and use it. In this case, no real installation is necessary, and starting \simpel{} is as simple as typing the following command into a terminal:
+
+\begin{verbatim}
+  python3 SimPel.py
+\end{verbatim}
+
+However, \simpel{} can be downloaded as executable binary for Windows, macOS and several Linux flavors.It was tested on various systems including Windows 7 (32-bit and 64-bit architecture), Windows 10 (32-bit and 64-bit architecture), macOS 10.12.6 (Sierra), and Ubuntu 16.04.
 
 Please note that these versions are much harder to debug if something goes wrong, therefore, they are provided as is without any further support. 
 
 
 A note on how these binaries have been created: Thanks to PyInstaller, it is rather straightforward to create binary distributions of Python programs, both as directories with all the necessary files contained as well as single-file executables.  Similar to cx\_freeze, PyInstaller allows to define additional options in a ``spec'' file.  This file is included in the sources available. To get a one-file binary, it was called simply as follows:
 
-\vspace*{1em}
-
-\begin{lstlisting}[language=bash]
+\begin{verbatim}
   pyinstaller --onefile --noconsole setup.spec
-\end{lstlisting}
+\end{verbatim}
 
 \begin{enumerate}
 \item Binaries for Linux have been built with Ubuntu 16.04 (Xenial Xerus) and a Python installation consisting of Python 3.5, matplotlib 2.1.1, PyQt 5.8.2,  NumPy 1.13.3, SciPy 0.17.0
@@ -250,7 +263,7 @@ The standard integration method of \simpel{} uses:
 k =  19+(\mathrm{round}(100\sigma_i)) + (20+(\mathrm{round}(100\sigma_i))\%2
 \end{align*}
 %
-points for the discretization of a Gaussian function $f_i$ in the interval $[r_{0,i}-3\sigma_i \ ,\ r_{0,i}+3\sigma_i]$. This is sufficient for most time traces. However, for some cases, especially if broad distance distributions are present in the small distance region, this is not sufficient and simulation noise is observed (\autoref{Integration_mehtods_comparison}).
+points for the discretization of a Gaussian function $f_i$ in the interval $[r_{0,i}-3\sigma_i \ ,\ r_{0,i}+3\sigma_i]$. This is sufficient for most time traces. However, for some cases, especially if broad distance distributions are present in the small distance region, this is not sufficient and simulation noise is observed (\autoref{Integration_methods_comparison}).
 
 \begin{figure}[!htb]
 \centering
@@ -261,7 +274,7 @@ points for the discretization of a Gaussian function $f_i$ in the interval $[r_{
     \caption{Comparison of standard integration settings (top, blue) and integration with higher discretization of the Gaussian
     functions (bottom, purple) used for simulation.
     }
-\label{Integration_mehtods_comparison}
+\label{Integration_methods_comparison}
 \end{figure} 
 
 This simulation noise can be avoided by enabling the ``Higher discretization'' check-box (three times higher discretization rate) or by checking/enabling ``Fresnel+very high discretization'' button (five times higher discretization rate). These should be sufficient for acquiring noise-free simulations of all possible distance distributions.
@@ -323,7 +336,7 @@ Integration method: Fresnel integrals
 
 Many standard settings of \simpel{} can be changed either dynamically directly in the GUI or as default by creating a configuration file.
 
-The current configuration can be opened and changed when running  \simpel{} by pressing the ``Config.'' button. If new configurations are set and the ``Accept'' button (see \autoref{Config_settings}) is clicked, the new settings are adapted immediately and a new simulation is carried out.
+The current configuration can be opened and changed when running  \simpel{} by pressing the ``Config'' button. If new configurations are set and the ``Accept'' button (see \autoref{Config_settings}) is clicked, the new settings are adapted immediately and a new simulation is carried out.
 
 \begin{figure}[!htb]
 \centering
