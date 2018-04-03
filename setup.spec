@@ -19,7 +19,7 @@ def resource_path(relative_path):
 
     
 
-a = Analysis([resource_path('SimPel2018.py')],
+a = Analysis([resource_path('SimPel.py')],
              binaries=[],
              datas =[],
              pathex =['/home/spatz/Downloads/SimPel_Python'],
@@ -34,7 +34,7 @@ a = Analysis([resource_path('SimPel2018.py')],
              win_private_assemblies=False,
              cipher=block_cipher)
              
-a.datas += [('SimPel_icon.png', resource_path('SimPel_icon.png'),'Data') ]      
+a.datas += [('SimPel_icon.ico', resource_path('SimPel_icon.ico'),'Data') ]      
 a.datas += [('SimPel_splashicon.png', resource_path('SimPel_splashicon.png'),'Data') ]  
 pyz = PYZ(a.pure, a.zipped_data,
              cipher=block_cipher)
@@ -44,9 +44,19 @@ exe = EXE(pyz,
           a.zipfiles,
           a.datas,
           exclude_binaries=False,
-          name='SimPel2018',
+          name='SimPel',
           debug=False,
           strip=False,
           upx=True,
-          icon = resource_path('SimPel_icon.png'),
-          console=True )
+          icon = resource_path('SimPel_icon.ico'),
+          console=False )
+
+app = BUNDLE(exe,
+         name='SimPel.app',
+         icon=resource_path('SimPelIcon.icns'),
+         bundle_identifier='SimPel',
+	 info_plist={
+		'CFBundleIconFiles': 'SimPelIcon.icns'
+		 },
+	 )
+
