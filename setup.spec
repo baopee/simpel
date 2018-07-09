@@ -19,10 +19,10 @@ def resource_path(relative_path):
 
     
 
-a = Analysis([resource_path('SimPel2018.py')],
+a = Analysis([resource_path('SimPel.py')],
              binaries=[],
              datas =[],
-             pathex =['/home/spatz/Downloads/SimPel_Python'],
+             pathex =[],
              hiddenimports=['scipy._lib',
              'scipy._lib.messagestream',
 			'scipy.misc',
@@ -44,9 +44,9 @@ exe = EXE(pyz,
           a.zipfiles,
           a.datas,
           exclude_binaries=False,
-          name='SimPel2018',
+          name='SimPel',
           debug=False,
           strip=False,
           upx=True,
           icon = resource_path('SimPel_icon.png'),
-          console=True )
+          console=False )

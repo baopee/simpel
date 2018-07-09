@@ -18,14 +18,12 @@ Copyright (c) 2018, Stephan Rein
 import numpy as np
 import datetime
 import matplotlib
-matplotlib.use("Qt5Agg")
+matplotlib.use("Qt5Agg",force=True)
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
 from PyQt5.QtWidgets import (QApplication, QMainWindow, QMessageBox, QVBoxLayout,QFileDialog,QSplashScreen, QDialog)
 from PyQt5.QtGui import  QPixmap,QIcon
-import matplotlib
-matplotlib.use("Qt5Agg",force=True)
 import time, sys, os
 #Import internal subfunctions
 import SimPel_Layout 
