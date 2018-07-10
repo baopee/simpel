@@ -46,4 +46,3 @@ class Ui_Configurations_Dialog(object):
         Configurations_Dialog.setWindowTitle(_translate("Configurations_Dialog", "Configurations"))
         self.Accept_conf_Button.setText(_translate("Configurations_Dialog", "Accept"))
         self.Reject_conf_Button.setText(_translate("Configurations_Dialog", "Cancel"))
-

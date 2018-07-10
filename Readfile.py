@@ -2,61 +2,70 @@
 """
 Created on Fri Mar 16 08:54:41 2018
 
-@author: stephan
+Subroutine for reading experimental time traces, provided as Bruker file
+format.
+
+@author: Stephan Rein, University of Freiburg, 2017
 """
 
 import numpy as np
 
-def read_Elexsys_File(Input,filename = None):
-    """Default setting for complex signal"""
+
+def read_Elexsys_File(Input, filename=None):
+    """read_Elexsys_File()
+
+    in:  Input:                       (data vectors, read from the .DTA binary)
+         filename                     (file name of the data file)
+
+    out: pc_spectrum                  (real part of the PELDOR signal)
+         pc_imag                      (imaginary part of the PELDOR signal)
+         time                         (time vector of the PELDOR signal)
+
+    The function takes the data vectors from the .DTA binary file and uses
+    the information given in the description file (.DSC) to construct the
+    PELDOR data vectors.
+    """
     complexsignal = True
-    
-    if filename.endswith('.DTA') :            
+    if filename.endswith('.DTA'):
         filename = filename[0:len(filename)-4]
         filename = filename+".DSC"
         try:
             f = open(filename, 'r')
             t = f.readlines()
             for l in t:
- 
                 if l.startswith('IKKF'):
                     s = l.split()
                     if s[1] == 'CPLX':
                         complexsignal = True
                     else:
-                        complexsignal = False 
-                    continue        
-                        
+                        complexsignal = False
+                    continue
                 if l.startswith('XPTS'):
                     s = l.split()
                     npoints = int(s[1])
                     continue
-                    
                 if l.startswith('XMIN'):
                     s = l.split()
                     start = float(s[1])
                     continue
-                    
                 if l.startswith('XWID'):
                     s = l.split()
-                    timescale = float(s[1])   
+                    timescale = float(s[1])
                     continue
-                
-
-            pc_spetrum1 = Input[0:len(Input):2]
-            if complexsignal == True:
-                 pc_imag1 = Input[1:len(Input):2]
-            elif complexsignal == False:
-                 pc_imag1 = np.zeros(len(pc_spetrum1)) 
-                 pc_imag1 = pc_imag1 +0.000001
-            pc_imag1 = pc_imag1/max(pc_spetrum1)
-            pc_spetrum1 = pc_spetrum1/max(pc_spetrum1)
-            pc_imag1 = pc_imag1+0.000001
+            pc_spectrum = Input[0:len(Input):2]
+            if complexsignal:
+                pc_imag = Input[1:len(Input):2]
+            elif not complexsignal:
+                pc_imag = np.zeros(len(pc_spectrum))
+                pc_imag = pc_imag+1e-8
+            pc_imag = pc_imag/max(pc_spectrum)
+            pc_spectrum = pc_spectrum/max(pc_spectrum)
+            pc_imag = pc_imag+1e-8
             stepsize = (timescale)/(npoints-1)
-            time1 =  np.arange(npoints)
-            time1 = time1*stepsize
-            time1  = time1 +start                   
-            return pc_spetrum1, pc_imag1, time1
+            time = np.arange(npoints)
+            time = time*stepsize
+            time = time+start
+            return pc_spectrum, pc_imag, time
         except:
             print("No .DSC file available")
             pass
